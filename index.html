@@ -3,40 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HPMODS Development Official Website</title>
+    <title>HPMODS Development Official</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for clean typography -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>My BeamNG.drive Mods</h1>
-        <p>High quality BeamNG skin, map & vehicle mods are all soon to come, FREE to download!</p>
+    <!-- Hero / Header Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <span class="badge">BeamNG.drive Repository</span>
+            <h1>OFFICIAL CONTENT</h1>
+            <p>Official HPMODS Development content, soon to include skin, map and vehicle mods... all for FREE!</p>
+            
+            <!-- Pill-Shaped Navigation Bar inside Hero -->
+            <nav class="category-nav">
+                <a href="#vehicles" class="nav-item active">Vehicles</a>
+                <a href="#maps" class="nav-item">Maps</a>
+                <a href="#skins" class="nav-item">Skins</a>
+                <a href="#other" class="nav-item">Other</a>
+            </nav>
+        </div>
     </header>
-
-    <!-- Category Navigation -->
-    <nav class="category-nav">
-        <a href="#vehicles">Vehicles</a>
-        <a href="#maps">Maps</a>
-        <a href="#skins">Skins</a>
-        <a href="#other">Other</a>
-    </nav>
 
     <main class="container">
         
         <!-- VEHICLES SECTION -->
         <section id="vehicles" class="mod-section">
-            <h2>🚗 Custom Vehicles</h2>
+            <div class="section-header">
+                <h2>BEAMNG VEHICLES</h2>
+                <div class="accent-line"></div>
+            </div>
+            
             <div class="mod-grid">
-                <!-- Individual Mod Card -->
+                <!-- Mod Card -->
                 <div class="mod-card">
-                    <img src="assets/vehicles/mod1-thumb.jpg" alt="Mod Preview" class="mod-image">
+                    <div class="image-container">
+                        <img src="assets/vehicles/mod1-thumb.jpg" alt="Mod Preview" class="mod-image">
+                    </div>
                     <div class="mod-info">
                         <h3>Supercharged Offroad Truck</h3>
-                        <p>Custom jbeam, fully working gauges, and 4 specialized configurations.</p>
-                        <!-- Download Button linked to GitHub Release Zip -->
-                        <a href="https://github.com" class="download-btn">Download .ZIP</a>
-                        <!-- The Counter Container (Filled by JavaScript later) -->
-                        <span class="download-counter" data-release-id="truck_mod.zip">Loading downloads...</span>
+                        <p>Custom jbeam, fully working gauges, and 4 specialized configurations built from the ground up.</p>
+                        <div class="card-footer">
+                            <a href="https://github.com" class="download-btn">Download .ZIP</a>
+                            <span class="download-counter" data-release-id="truck_mod.zip">📥 Loading...</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,33 +58,12 @@
 
         <!-- MAPS SECTION -->
         <section id="maps" class="mod-section">
-            <h2>🗺️ Custom Maps</h2>
-            <div class="mod-grid">
-                <div class="mod-card">
-                    <img src="assets/maps/map1-thumb.jpg" alt="Map Preview" class="mod-image">
-                    <div class="mod-info">
-                        <h3>Desert Rally Desert Trail</h3>
-                        <p>High-speed dirt trails with custom PBR textures and rock formations.</p>
-                        <a href="https://github.com" class="download-btn">Download .ZIP</a>
-                        <span class="download-counter" data-release-id="desert_rally.zip">Loading downloads...</span>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2>BEAMNG MAPS</h2>
+                <div class="accent-line"></div>
             </div>
-        </section>
-
-        <!-- SKINS SECTION -->
-        <section id="skins" class="mod-section">
-            <h2>🎨 Vehicle Skins</h2>
             <div class="mod-grid">
-                <!-- Add skin cards here following the same format -->
-            </div>
-        </section>
-
-        <!-- OTHER SECTION -->
-        <section id="other" class="mod-section">
-            <h2>⚙️ Other Utilities</h2>
-            <div class="mod-grid">
-                <!-- Add miscellaneous mods here -->
+                <!-- Map entries follow same layout -->
             </div>
         </section>
 
