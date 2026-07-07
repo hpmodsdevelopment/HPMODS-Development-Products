@@ -1,120 +1,770 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HPMODS Development Official</title>
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Google Fonts for clean typography -->
-    <link rel="preconnect" href="https://googleapis.com" />
-    <link rel="preconnect" href="https://gstatic.com" crossorigin />
-    <link
-      href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- badge, header, sub-header -->
-    <header class="hero-section">
-      <div class="hero-content">
-        <span class="badge">HPMODS DEVELOPMENT OFFICIAL WEBSITE</span>
-        <h1>GAME MODS, DEVELOPMENT & MORE</h1>
-        <p>
-          Official HPMODS Development content, soon to include skin, map and
-          vehicle mods... all for FREE!
-        </p>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hunter's Garage | BeamNG.drive Mods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        <!-- navigation bar -->
-        <nav class="category-nav">
-          <a href="#vehicles" class="nav-item active">Vehicles</a>
-          <a href="#maps" class="nav-item">Maps</a>
-          <a href="#skins" class="nav-item">Skins</a>
-          <a href="#other" class="nav-item">Other</a>
-        </nav>
+:root {
+  --bg:        #0a0d12;
+  --bg-1:      #131820;
+  --bg-2:      #111620;
+  --bg-3:      #1b222e;
+  --accent:    #2e7cf6;
+  --accent-lo: rgba(46,124,246,.08);
+  --accent-md: rgba(46,124,246,.18);
+  --accent-hi: rgba(46,124,246,.55);
+  --amber:     #4fc3ff;
+  --amber-lo:  rgba(79,195,255,.08);
+  --amber-md:  rgba(79,195,255,.2);
+  --text:      #f5f6f8;
+  --text-2:    #9aa3b0;
+  --text-3:    #5a6472;
+  --border:    #232b38;
+  --border-2:  #38445a;
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(46,124,246,.10) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* MODALS (shared) */
+.modal-overlay { display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.82);align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;animation:lbFadeIn .18s ease; }
+.modal-overlay.open { display:flex; }
+@keyframes lbFadeIn { from{opacity:0} to{opacity:1} }
+.modal-box { position:relative;width:100%;max-width:880px;background:var(--bg-1);border:1px solid var(--border-2);border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:lbImgIn .2s ease;margin:auto 0; }
+@keyframes lbImgIn { from{transform:scale(.97);opacity:0} to{transform:scale(1);opacity:1} }
+.modal-close { position:absolute;top:14px;right:14px;background:rgba(255,255,255,.06);border:1px solid var(--border-2);color:#fff;font-size:.85rem;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s;z-index:10; }
+.modal-close:hover { background:rgba(255,255,255,.15); }
+
+/* Image lightbox (inside mod modal) */
+.lightbox { display:none;position:fixed;inset:0;z-index:10050;background:rgba(0,0,0,.93);align-items:center;justify-content:center;cursor:zoom-out;animation:lbFadeIn .18s ease; }
+.lightbox.open { display:flex; }
+.lightbox-inner { position:relative;display:flex;align-items:center;justify-content:center;max-width:94vw;max-height:94vh; }
+.lightbox-inner img { max-width:94vw;max-height:92vh;object-fit:contain;border-radius:8px;border:1px solid rgba(255,255,255,.08);cursor:default;user-select:none;display:block; }
+.lightbox-close { position:fixed;top:18px;right:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.85rem;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10060; }
+.lightbox-close:hover { background:rgba(255,255,255,.18); }
+
+/* NAVBAR */
+.navbar { position:sticky;top:0;z-index:900;backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px);background:rgba(24,24,24,.92);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 24px;gap:0; }
+.nav-brand { display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0; }
+.nav-logo { height:28px;filter:drop-shadow(0 0 8px rgba(46,124,246,.5));border-radius:6px; }
+.nav-wordmark { font-family:var(--font-head);font-weight:800;font-size:1.18rem;letter-spacing:.1em;color:var(--text);text-transform:uppercase; }
+.nav-wordmark span { color:var(--accent); }
+.nav-tabs { display:flex;align-items:center;gap:2px;margin-left:32px;flex:1; }
+.nav-tab { font-family:var(--font-head);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);padding:7px 14px;border-radius:6px;border:none;background:transparent;cursor:pointer;transition:color .2s,background .2s;position:relative; }
+.nav-tab::after { content:'';position:absolute;bottom:0;left:50%;right:50%;height:2px;background:var(--accent);border-radius:2px 2px 0 0;transition:left .25s,right .25s; }
+.nav-tab:hover { color:var(--text);background:var(--bg-2); }
+.nav-tab.active { color:var(--accent); }
+.nav-tab.active::after { left:12px;right:12px; }
+.nav-socials { display:flex;align-items:center;gap:6px;margin-left:auto; }
+.soc-btn { display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:7px;border:1px solid var(--border);background:var(--bg-2);color:var(--text-2);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-decoration:none;font-family:var(--font-head);text-transform:uppercase;transition:border-color .2s,color .2s,background .2s,box-shadow .2s; }
+.soc-btn i { font-size:.8rem; }
+.soc-btn:hover { color:var(--text);border-color:var(--border-2);background:var(--bg-3); }
+.soc-btn.discord:hover { color:#7289da;border-color:rgba(114,137,218,.35);box-shadow:0 0 12px rgba(114,137,218,.12); }
+.soc-btn.patreon:hover { color:#f96854;border-color:rgba(249,104,84,.35);box-shadow:0 0 12px rgba(249,104,84,.12); }
+.soc-btn.linktree:hover { color:#39e09b;border-color:rgba(57,224,155,.35);box-shadow:0 0 12px rgba(57,224,155,.12); }
+
+/* LAYOUT */
+.page-wrap { max-width:1380px;margin:0 auto;padding:0 24px;position:relative;z-index:1; }
+.tab-panel { display:none;padding:36px 0 60px; }
+.tab-panel.active { display:block; }
+
+/* HERO */
+.hero { display:grid;grid-template-columns:1fr 1.05fr;gap:44px;align-items:center;padding-bottom:44px;border-bottom:1px solid var(--border); }
+.hero-badge { display:inline-flex;align-items:center;gap:7px;font-family:var(--font-head);font-weight:700;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-md);background:var(--accent-lo);padding:4px 12px;border-radius:30px;margin-bottom:18px; }
+.hero-badge .dot { width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(46,124,246,.5)} 50%{opacity:.7;box-shadow:0 0 0 5px rgba(46,124,246,0)} }
+.hero-title { font-family:var(--font-head);font-weight:900;font-size:4.6rem;line-height:.93;letter-spacing:-.01em;text-transform:uppercase;color:var(--text);margin-bottom:6px; }
+.hero-title .ac { color:var(--accent); }
+.hero-title .dim { color:var(--text-2); }
+.hero-sub { font-size:.98rem;color:var(--text-2);line-height:1.7;margin-bottom:30px;max-width:440px; }
+.hero-actions { display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px; }
+.hero-btn { display:flex;flex-direction:column;align-items:center;padding:13px 26px;border-radius:10px;border:none;cursor:pointer;font-family:var(--font-head);font-weight:800;letter-spacing:.07em;text-transform:uppercase;transition:transform .2s,filter .2s;min-width:175px;text-decoration:none; }
+.hero-btn:hover { transform:translateY(-2px);filter:brightness(1.12); }
+.hero-btn-primary { background:var(--accent);color:#fff;box-shadow:0 0 28px rgba(46,124,246,.35),0 4px 18px rgba(46,124,246,.25); }
+.hero-btn-ghost { background:var(--bg-1);color:var(--text);border:1px solid var(--border-2); }
+.btn-label { display:flex;align-items:center;gap:8px;font-size:.86rem; }
+.btn-sub { font-size:.74rem;font-weight:600;font-family:var(--font-body);text-transform:none;margin-top:2px;opacity:.85; }
+.stats-row { display:grid;grid-template-columns:repeat(3,1fr);gap:10px; }
+.stat-card { background:var(--bg-1);border:1px solid var(--border);border-radius:10px;padding:13px 15px;display:flex;align-items:center;gap:11px;transition:border-color .2s; }
+.stat-card:hover { border-color:var(--accent-md); }
+.stat-icon { width:34px;height:34px;border-radius:9px;background:var(--accent-lo);border:1px solid var(--accent-md);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.82rem;flex-shrink:0; }
+.stat-icon.amb { background:var(--amber-lo);border-color:var(--amber-md);color:var(--amber); }
+.stat-label { font-size:.64rem;font-family:var(--font-head);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:1px; }
+.stat-value { font-size:1.18rem;font-weight:700;font-family:var(--font-head);color:var(--text); }
+
+.hero-visual { border-radius:12px;border:1px solid var(--border-2);overflow:hidden;background:#000;aspect-ratio:16/10;position:relative;box-shadow:0 0 40px rgba(46,124,246,.12),0 20px 60px rgba(0,0,0,.5); }
+.hero-visual img { width:100%;height:100%;object-fit:cover;display:block; }
+.hero-visual .hv-tag { position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.12);color:#fff;font-family:var(--font-head);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:6px; }
+
+/* SECTION DIVIDER */
+.sec-div { display:flex;align-items:center;gap:14px;margin:40px 0 22px; }
+.sec-div-line { flex:1;height:1px;background:var(--border); }
+.sec-div-title { font-family:var(--font-head);font-weight:800;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);white-space:nowrap;display:flex;align-items:center;gap:8px; }
+.sec-div-title i { color:var(--accent); }
+
+/* CATEGORY TILES (home) */
+.cat-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+.cat-tile { background:var(--bg-1);border:1px solid var(--border);border-radius:14px;padding:26px 22px;text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s;position:relative;overflow:hidden; }
+.cat-tile:hover { border-color:var(--accent-md);transform:translateY(-3px); }
+.cat-tile-icon { width:44px;height:44px;border-radius:11px;background:var(--accent-lo);border:1px solid var(--accent-md);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.05rem; }
+.cat-tile-title { font-family:var(--font-head);font-weight:800;font-size:1.3rem;letter-spacing:.03em;text-transform:uppercase;color:var(--text); }
+.cat-tile-desc { font-size:.82rem;color:var(--text-2);line-height:1.6; }
+.cat-tile-count { font-family:var(--font-mono);font-size:.7rem;color:var(--text-3);margin-top:auto;padding-top:6px; }
+
+/* COMMUNITY */
+.community-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+.comm-card { border-radius:12px;padding:20px;display:flex;gap:14px;align-items:flex-start;text-decoration:none;transition:transform .2s,border-color .2s;border:1px solid transparent; }
+.comm-card:hover { transform:translateY(-3px); }
+.comm-icon { width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0; }
+.comm-title { font-family:var(--font-head);font-weight:800;font-size:.92rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px; }
+.comm-desc { font-size:.78rem;color:var(--text-2);line-height:1.6; }
+.comm-discord { background:rgba(114,137,218,.07);border-color:rgba(114,137,218,.2); }
+.comm-discord:hover { border-color:rgba(114,137,218,.45); }
+.comm-discord .comm-icon { background:rgba(114,137,218,.12);color:#7289da; }
+.comm-discord .comm-title { color:#7289da; }
+.comm-patreon { background:rgba(249,104,84,.05);border-color:rgba(249,104,84,.18); }
+.comm-patreon:hover { border-color:rgba(249,104,84,.42); }
+.comm-patreon .comm-icon { background:rgba(249,104,84,.1);color:#f96854; }
+.comm-patreon .comm-title { color:#f96854; }
+.comm-linktree { background:rgba(57,224,155,.04);border-color:rgba(57,224,155,.15); }
+.comm-linktree:hover { border-color:rgba(57,224,155,.38); }
+.comm-linktree .comm-icon { background:rgba(57,224,155,.08);color:#39e09b; }
+.comm-linktree .comm-title { color:#39e09b; }
+
+/* MODS TAB */
+.tab-heading { font-family:var(--font-head);font-weight:900;font-size:3.2rem;text-transform:uppercase;color:var(--text);line-height:1;margin-bottom:6px; }
+.tab-heading span { color:var(--accent); }
+.tab-sub { color:var(--text-2);font-size:.9rem;margin-bottom:22px; }
+
+.filter-row { display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:26px; }
+.filter-pill { font-family:var(--font-head);font-weight:700;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);padding:8px 18px;border-radius:30px;border:1px solid var(--border);background:var(--bg-1);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px; }
+.filter-pill:hover { color:var(--text);border-color:var(--border-2); }
+.filter-pill.active { color:var(--accent);border-color:var(--accent-md);background:var(--accent-lo); }
+.filter-pill .cnt { font-family:var(--font-mono);font-size:.68rem;color:var(--text-3);background:var(--bg-3);padding:1px 6px;border-radius:20px; }
+.filter-pill.active .cnt { color:var(--accent);background:rgba(46,124,246,.14); }
+
+.search-wrap { margin-left:auto;position:relative;min-width:220px; }
+.search-input { width:100%;background:var(--bg-1);border:1px solid var(--border);border-radius:30px;padding:8px 16px 8px 36px;color:var(--text);font-family:var(--font-body);font-size:.82rem;outline:none;transition:border-color .2s; }
+.search-input:focus { border-color:var(--accent-md); }
+.search-wrap i { position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:.78rem; }
+
+/* MOD GRID + CARDS */
+.mod-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:14px; }
+.mod-card { background:var(--bg-1);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s;display:flex;flex-direction:column; }
+.mod-card:hover { border-color:var(--accent-md);transform:translateY(-3px); }
+.mod-card-img { aspect-ratio:16/10;background:var(--bg-2);position:relative;overflow:hidden; }
+.mod-card-img img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s; }
+.mod-card:hover .mod-card-img img { transform:scale(1.05); }
+.mod-card-cat { position:absolute;top:9px;left:9px;font-family:var(--font-head);font-size:.6rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.12);color:var(--accent); }
+.mod-card-cat.wip { color:var(--amber);border-color:rgba(79,195,255,.35); }
+.mod-card-body { padding:14px 15px 16px;display:flex;flex-direction:column;gap:5px;flex:1; }
+.mod-card-title { font-family:var(--font-head);font-weight:800;font-size:1.02rem;letter-spacing:.02em;color:var(--text);text-transform:uppercase;line-height:1.15; }
+.mod-card-desc { font-size:.76rem;color:var(--text-2);line-height:1.55;flex:1; }
+.mod-card-foot { display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px solid var(--border); }
+.mod-card-tag { font-family:var(--font-mono);font-size:.65rem;color:var(--text-3); }
+.mod-card-dl { font-family:var(--font-mono);font-size:.68rem;color:var(--text-2);display:flex;align-items:center;gap:5px;margin-left:auto;margin-right:8px; }
+.mod-card-dl i { color:var(--accent);font-size:.65rem; }
+.mod-card-arrow { color:var(--accent);font-size:.75rem;opacity:0;transition:opacity .2s,transform .2s; }
+.mod-card:hover .mod-card-arrow { opacity:1;transform:translateX(2px); }
+
+.empty-state { text-align:center;padding:60px 20px;color:var(--text-3);font-size:.9rem; }
+.empty-state i { font-size:1.6rem;margin-bottom:10px;display:block;color:var(--border-2); }
+
+/* MOD MODAL */
+.mod-modal-media { aspect-ratio:16/9;background:#000;position:relative;border-radius:16px 16px 0 0;overflow:hidden; }
+.mod-modal-media img { width:100%;height:100%;object-fit:contain;background:#000;cursor:zoom-in;display:block; }
+.mod-modal-thumbs { display:flex;gap:6px;padding:10px 24px 0;overflow-x:auto; }
+.mm-thumb { flex-shrink:0;width:76px;height:48px;border-radius:6px;overflow:hidden;border:1px solid var(--border);cursor:pointer;opacity:.55;transition:opacity .2s,border-color .2s; }
+.mm-thumb img { width:100%;height:100%;object-fit:cover;display:block; }
+.mm-thumb:hover,.mm-thumb.active { opacity:1;border-color:var(--accent-hi); }
+.mod-modal-body { padding:22px 24px 26px; }
+.mm-top { display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:6px;flex-wrap:wrap; }
+.mm-title { font-family:var(--font-head);font-weight:900;font-size:1.9rem;letter-spacing:.01em;text-transform:uppercase;color:var(--text);line-height:1.05; }
+.mm-cat-badge { font-family:var(--font-head);font-size:.66rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:var(--accent-lo);border:1px solid var(--accent-md);color:var(--accent);white-space:nowrap; }
+.mm-cat-badge.wip { color:var(--amber);background:var(--amber-lo);border-color:var(--amber-md); }
+.mm-desc { color:var(--text-2);font-size:.88rem;line-height:1.7;margin:12px 0 18px;max-width:640px; }
+.mm-meta-row { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px; }
+.mm-meta-pill { display:flex;align-items:center;gap:6px;font-size:.74rem;color:var(--text-3);background:var(--bg-2);border:1px solid var(--border);padding:5px 12px;border-radius:20px; }
+.mm-meta-pill i { color:var(--accent);font-size:.7rem; }
+.mm-actions { display:flex;gap:10px;flex-wrap:wrap; }
+.mm-btn { display:flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;border:none;cursor:pointer;font-family:var(--font-head);font-weight:800;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:transform .2s,filter .2s; }
+.mm-btn:hover { transform:translateY(-2px);filter:brightness(1.1); }
+.mm-btn-dl { background:var(--accent);color:#fff;box-shadow:0 0 24px rgba(46,124,246,.32); }
+.mm-btn-count { font-family:var(--font-body);font-weight:600;text-transform:none;font-size:.72rem;opacity:.85; }
+.mm-btn-license { background:var(--bg-2);color:var(--text-2);border:1px solid var(--border-2); }
+.mm-btn-license:hover { color:var(--text); }
+.mm-btn-wip { background:var(--bg-2);color:var(--text-3);border:1px solid var(--border);cursor:not-allowed; }
+.mm-btn-wip:hover { transform:none;filter:none; }
+
+/* LICENSE MODAL */
+.lic-tabs { display:flex;gap:4px;padding:22px 24px 0;border-bottom:1px solid var(--border); }
+.lic-tab { font-family:var(--font-head);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);padding:9px 16px;border-radius:8px 8px 0 0;border:none;background:transparent;cursor:pointer;transition:color .2s,background .2s;position:relative;top:1px; }
+.lic-tab:hover { color:var(--text); }
+.lic-tab.active { color:var(--accent);background:var(--bg);border:1px solid var(--border);border-bottom-color:var(--bg); }
+.lic-panel { display:none;padding:22px 26px 28px;font-size:.85rem;color:var(--text-2);line-height:1.8;max-height:56vh;overflow-y:auto; }
+.lic-panel.active { display:block; }
+.lic-panel h3 { font-family:var(--font-head);font-weight:800;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text);margin:16px 0 6px; }
+.lic-panel h3:first-child { margin-top:0; }
+.lic-panel ul { padding-left:20px;margin:6px 0; }
+.lic-panel strong { color:var(--text); }
+
+/* ABOUT */
+.about-grid { display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:start; }
+.about-photo { border-radius:14px;overflow:hidden;border:1px solid var(--border-2);aspect-ratio:1/1;background:var(--bg-1); }
+.about-photo img { width:100%;height:100%;object-fit:cover;display:block; }
+.about-name { font-family:var(--font-head);font-weight:900;font-size:2.4rem;text-transform:uppercase;color:var(--text);line-height:1; }
+.about-name span { color:var(--accent); }
+.about-role { font-family:var(--font-head);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin:8px 0 18px; }
+.about-bio { color:var(--text-2);font-size:.92rem;line-height:1.8;margin-bottom:10px; }
+.about-bio strong { color:var(--text); }
+
+/* FOOTER */
+.footer { border-top:1px solid var(--border);padding:28px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;max-width:1380px;margin:0 auto;position:relative;z-index:1; }
+.footer-brand { display:flex;align-items:center;gap:10px; }
+.footer-logo { height:22px;opacity:.55;border-radius:5px; }
+.footer-name { font-family:var(--font-head);font-weight:700;font-size:.86rem;letter-spacing:.1em;color:var(--text-3);text-transform:uppercase; }
+.footer-socials { display:flex;align-items:center;gap:7px; }
+.footer-soc { display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:7px;border:1px solid var(--border);color:var(--text-3);text-decoration:none;font-size:.7rem;font-weight:700;font-family:var(--font-head);text-transform:uppercase;letter-spacing:.06em;transition:all .2s; }
+.footer-soc:hover { color:var(--text);border-color:var(--border-2); }
+.footer-soc.discord:hover { color:#7289da; }
+.footer-soc.patreon:hover { color:#f96854; }
+.footer-soc.linktree:hover { color:#39e09b; }
+.footer-credit { font-size:.74rem;color:var(--text-3); }
+.footer-credit a { color:var(--accent);text-decoration:none;font-weight:700; }
+
+/* MOBILE */
+.mobile-tab-bar { display:none; }
+@media (max-width:1100px) { .mod-grid{grid-template-columns:repeat(3,1fr)} .cat-grid{grid-template-columns:1fr} }
+@media (max-width:900px) {
+  .hero{grid-template-columns:1fr;gap:28px} .hero-title{font-size:3.4rem} .stats-row{grid-template-columns:repeat(3,1fr)} .nav-tabs{display:none}
+  .mobile-tab-bar{display:flex;overflow-x:auto;gap:2px;background:var(--bg-1);border-bottom:1px solid var(--border);padding:6px 16px;position:sticky;top:56px;z-index:800;}
+  .mobile-tab{flex-shrink:0;font-family:var(--font-head);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2);padding:6px 12px;border-radius:6px;border:none;background:transparent;cursor:pointer;white-space:nowrap;transition:color .2s,background .2s;}
+  .mobile-tab.active{color:var(--accent);background:var(--accent-lo);} .soc-btn span{display:none} .soc-btn{padding:6px 9px}
+  .about-grid{grid-template-columns:1fr} .about-photo{max-width:220px;margin:0 auto;}
+  .mod-grid{grid-template-columns:repeat(2,1fr)} .community-grid{grid-template-columns:1fr}
+  .search-wrap{margin-left:0;width:100%}
+}
+@media (max-width:680px) {
+  .page-wrap{padding:0 14px} .hero-title{font-size:2.8rem} .hero-actions{flex-direction:column} .hero-btn{width:100%}
+  .stats-row{grid-template-columns:1fr 1fr} .mod-grid{grid-template-columns:1fr}
+  .mm-title{font-size:1.4rem} .lic-tabs{overflow-x:auto}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="nav-brand" href="#" onclick="switchTab('home',null);return false;">
+    <img src="logo.png" alt="" class="nav-logo" onerror="this.style.display='none'">
+    <span class="nav-wordmark">Hunter's <span>Garage</span></span>
+  </a>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('home',this)">Home</button>
+    <button class="nav-tab" onclick="switchTab('mods',this)">BeamNG Mods</button>
+    <button class="nav-tab" onclick="switchTab('about',this)">About</button>
+  </div>
+  <div class="nav-socials">
+    <a href="#" target="_blank" class="soc-btn discord"><i class="fab fa-discord"></i><span>Discord</span></a>
+    <a href="#" target="_blank" class="soc-btn patreon"><i class="fab fa-patreon"></i><span>Patreon</span></a>
+    <a href="#" target="_blank" class="soc-btn linktree"><i class="fas fa-seedling"></i><span>Linktree</span></a>
+  </div>
+</nav>
+
+<!-- Mobile tab bar -->
+<div class="mobile-tab-bar">
+  <button class="mobile-tab active" onclick="switchTab('home',this,true)">Home</button>
+  <button class="mobile-tab" onclick="switchTab('mods',this,true)">BeamNG Mods</button>
+  <button class="mobile-tab" onclick="switchTab('about',this,true)">About</button>
+</div>
+
+<!-- MAIN -->
+<div class="page-wrap">
+
+  <!-- HOME -->
+  <div class="tab-panel active" id="panel-home">
+    <div class="hero">
+      <div>
+        <div class="hero-badge"><span class="dot"></span> BeamNG.drive mod creator</div>
+        <h1 class="hero-title">BUILT FOR<br><span class="ac">THE</span><br><span class="dim">GARAGE</span></h1>
+        <p class="hero-sub">Custom vehicle skins, maps, and vehicle mods for BeamNG.drive — all free, all hosted here so they stay exactly the way I built them.</p>
+        <div class="hero-actions">
+          <button class="hero-btn hero-btn-primary" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1])">
+            <span class="btn-label"><i class="fas fa-layer-group"></i> Browse Mods</span>
+            <span class="btn-sub">14 skins · 1 vehicle · 1 map</span>
+          </button>
+          <button class="hero-btn hero-btn-ghost" onclick="switchTab('about',document.querySelectorAll('.nav-tab')[2])">
+            <span class="btn-label"><i class="fas fa-user"></i> About Me</span>
+            <span class="btn-sub">Who's behind this</span>
+          </button>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-icon"><i class="fas fa-spray-can"></i></div><div><div class="stat-label">Skins</div><div class="stat-value">14</div></div></div>
+          <div class="stat-card"><div class="stat-icon amb"><i class="fas fa-truck-monster"></i></div><div><div class="stat-label">Vehicles</div><div class="stat-value">1</div></div></div>
+          <div class="stat-card"><div class="stat-icon"><i class="fas fa-map"></i></div><div><div class="stat-label">Maps</div><div class="stat-value">1 WIP</div></div></div>
+        </div>
       </div>
-    </header>
+      <div class="hero-visual">
+        <img src="hero-showcase.jpg" alt="Mod showcase" onerror="this.parentElement.style.background='linear-gradient(135deg,var(--bg-2),var(--bg-3))';this.style.display='none'">
+        <div class="hv-tag"><i class="fas fa-image"></i> Featured build</div>
+      </div>
+    </div>
 
-    <main class="container">
-      <!-- skins section -->
-      <section id="skins" class="mod-section">
-        <div class="section-header">
-          <h2>BEAMNG SKINS</h2>
-          <div class="accent-line"></div>
-        </div>
+    <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-title"><i class="fas fa-grip"></i> Browse by category</div><div class="sec-div-line"></div></div>
+    <div class="cat-grid">
+      <a href="#" class="cat-tile" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1]);setTimeout(()=>filterCat('skins'),0);return false;">
+        <div class="cat-tile-icon"><i class="fas fa-spray-can"></i></div>
+        <div class="cat-tile-title">Skins</div>
+        <div class="cat-tile-desc">Custom liveries and paint jobs for a range of BeamNG vehicles.</div>
+        <div class="cat-tile-count">14 mods</div>
+      </a>
+      <a href="#" class="cat-tile" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1]);setTimeout(()=>filterCat('vehicles'),0);return false;">
+        <div class="cat-tile-icon"><i class="fas fa-truck-monster"></i></div>
+        <div class="cat-tile-title">Vehicles</div>
+        <div class="cat-tile-desc">Full custom vehicle builds, starting with the Gavril Heavystar II.</div>
+        <div class="cat-tile-count">1 mod</div>
+      </a>
+      <a href="#" class="cat-tile" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1]);setTimeout(()=>filterCat('maps'),0);return false;">
+        <div class="cat-tile-icon"><i class="fas fa-map"></i></div>
+        <div class="cat-tile-title">Maps</div>
+        <div class="cat-tile-desc">Original terrain and level design for BeamNG.drive.</div>
+        <div class="cat-tile-count">1 in progress</div>
+      </a>
+    </div>
 
-        <div class="mod-grid">
-          <!-- mod card; test skin pack (NY Emergency Pack) -->
-          <div class="mod-card">
-            <div class="image-container">
-              <img
-                src="assets/vehicles/mod1-thumb.jpg"
-                alt="Mod Preview"
-                class="mod-image"
-              />
-            </div>
-            <div class="mod-info">
-              <h3>NY Emergency Skin Pack</h3>
-              <p>
-                Vastly inclusive skin pack of various New York area emergency
-                vehicle agencies. Includes skins, configs, license plates.
-              </p>
-              <div class="card-footer">
-                  <a href="https://github.com" download class="download-btn">Download .ZIP</a>
-                  <span class="download-counter" data-release-id="test_website_download.zip">📥 Loading...</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-title"><i class="fas fa-users"></i> Community</div><div class="sec-div-line"></div></div>
+    <div class="community-grid">
+      <a href="#" target="_blank" class="comm-card comm-discord">
+        <div class="comm-icon"><i class="fab fa-discord"></i></div>
+        <div><div class="comm-title">Discord</div><div class="comm-desc">Get support, share screenshots, and hear about new releases first.</div></div>
+      </a>
+      <a href="#" target="_blank" class="comm-card comm-patreon">
+        <div class="comm-icon"><i class="fab fa-patreon"></i></div>
+        <div><div class="comm-title">Patreon</div><div class="comm-desc">Support ongoing mod development directly.</div></div>
+      </a>
+      <a href="#" target="_blank" class="comm-card comm-linktree">
+        <div class="comm-icon"><i class="fas fa-seedling"></i></div>
+        <div><div class="comm-title">Linktree</div><div class="comm-desc">Every link in one place.</div></div>
+      </a>
+    </div>
+  </div>
 
-      <!-- maps section -->
-      <section id="maps" class="mod-section">
-        <div class="section-header">
-          <h2>BEAMNG MAPS</h2>
-          <div class="accent-line"></div>
-        </div>
-        <div class="mod-grid">
-          <!-- mod card; unused -->
-        </div>
-      </section>
+  <!-- MODS -->
+  <div class="tab-panel" id="panel-mods">
+    <h2 class="tab-heading">BEAMNG <span>MODS</span></h2>
+    <p class="tab-sub">All free to download. Click a card for screenshots, details, and license info.</p>
 
-      <!-- vehicles section -->
-      <section id="vehicles" class="mod-section">
-        <div class="section-header">
-          <h2>BEAMNG VEHICLES</h2>
-          <div class="accent-line"></div>
-        </div>
+    <div class="filter-row">
+      <button class="filter-pill active" data-cat="all" onclick="filterCat('all',this)">All <span class="cnt" id="cnt-all">16</span></button>
+      <button class="filter-pill" data-cat="skins" onclick="filterCat('skins',this)"><i class="fas fa-spray-can"></i> Skins <span class="cnt" id="cnt-skins">14</span></button>
+      <button class="filter-pill" data-cat="vehicles" onclick="filterCat('vehicles',this)"><i class="fas fa-truck-monster"></i> Vehicles <span class="cnt" id="cnt-vehicles">1</span></button>
+      <button class="filter-pill" data-cat="maps" onclick="filterCat('maps',this)"><i class="fas fa-map"></i> Maps <span class="cnt" id="cnt-maps">1</span></button>
+      <div class="search-wrap">
+        <i class="fas fa-magnifying-glass"></i>
+        <input type="text" class="search-input" id="modSearch" placeholder="Search mods..." oninput="renderMods()">
+      </div>
+    </div>
 
-        <div class="mod-grid">
-          <!-- mod card; unused -->
-          <div class="mod-card">
-            <div class="image-container">
-              <img
-                src="assets/vehicles/mod1-thumb.jpg"
-                alt="Mod Preview"
-                class="mod-image"
-              />
-            </div>
-            <div class="mod-info">
-              <h3>Supercharged Offroad Truck</h3>
-              <p>
-                Custom jbeam, fully working gauges, and 4 specialized
-                configurations built from the ground up.
-              </p>
-              <div class="card-footer">
-                <a href="https://github.com" class="download-btn"
-                  >Download .ZIP</a
-                >
-                <span class="download-counter" data-release-id="truck_mod.zip"
-                  >📥 Loading...</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+    <div class="mod-grid" id="modGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;"><i class="fas fa-box-open"></i>No mods match your search.</div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- ABOUT -->
+  <div class="tab-panel" id="panel-about">
+    <h2 class="tab-heading">ABOUT <span>ME</span></h2>
+    <p class="tab-sub">The person behind the mods.</p>
+    <div class="about-grid">
+      <div class="about-photo"><img src="hunter-photo.jpg" alt="Hunter" onerror="this.parentElement.style.background='var(--bg-2)';this.style.display='none'"></div>
+      <div>
+        <div class="about-name">HUNTER <span>@hunter6828</span></div>
+        <div class="about-role">BeamNG.drive Mod Creator</div>
+        <p class="about-bio">Hey, I'm Hunter — I make skins, vehicles, and maps for <strong>BeamNG.drive</strong>. Everything here started on the official repository, but I'm moving my work to my own site so I have full control over how it's shared and licensed.</p>
+        <p class="about-bio">Right now that's <strong>14 skin mods</strong>, one custom vehicle (the <strong>Gavril Heavystar II</strong>), and a map that's still a work in progress. Everything is free to download.</p>
+        <p class="about-bio">Some of my maps and vehicles carry a license/EULA — check the <strong>License</strong> button on any mod card for the specifics.</p>
+        <div class="hero-actions" style="margin-top:20px;">
+          <a href="#" target="_blank" class="hero-btn hero-btn-ghost"><span class="btn-label"><i class="fab fa-discord"></i> Join Discord</span></a>
+          <a href="#" target="_blank" class="hero-btn hero-btn-ghost"><span class="btn-label"><i class="fab fa-patreon"></i> Support on Patreon</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand"><img src="logo.png" alt="" class="footer-logo" onerror="this.style.display='none'"><span class="footer-name">Hunter's Garage</span></div>
+  <div class="footer-socials">
+    <a href="#" target="_blank" class="footer-soc discord"><i class="fab fa-discord"></i> Discord</a>
+    <a href="#" target="_blank" class="footer-soc patreon"><i class="fab fa-patreon"></i> Patreon</a>
+    <a href="#" target="_blank" class="footer-soc linktree"><i class="fas fa-seedling"></i> Linktree</a>
+  </div>
+  <div class="footer-credit">Made by <a href="#" target="_blank">@Burzt_YT</a></div>
+</footer>
+
+<!-- MOD DETAIL MODAL -->
+<div class="modal-overlay" id="modModal" onclick="if(event.target===this)closeModModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModModal()"><i class="fas fa-xmark"></i></button>
+    <div class="mod-modal-media">
+      <img id="mmMainImg" src="" alt="" onclick="openLightbox(this.src)">
+    </div>
+    <div class="mod-modal-thumbs" id="mmThumbs"></div>
+    <div class="mod-modal-body">
+      <div class="mm-top">
+        <div class="mm-title" id="mmTitle"></div>
+        <div class="mm-cat-badge" id="mmCatBadge"></div>
+      </div>
+      <div class="mm-desc" id="mmDesc"></div>
+      <div class="mm-meta-row" id="mmMetaRow"></div>
+      <div class="mm-actions" id="mmActions"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LICENSE MODAL -->
+<div class="modal-overlay" id="licModal" onclick="if(event.target===this)closeLicModal()">
+  <div class="modal-box" style="max-width:720px;" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeLicModal()"><i class="fas fa-xmark"></i></button>
+    <div class="lic-tabs">
+      <button class="lic-tab" data-lic="skins" onclick="switchLic('skins',this)">Skins License</button>
+      <button class="lic-tab" data-lic="vehicles" onclick="switchLic('vehicles',this)">Vehicle License</button>
+      <button class="lic-tab" data-lic="maps" onclick="switchLic('maps',this)">Map License</button>
+    </div>
+
+    <div class="lic-panel" id="lic-skins">
+      <h3>Skin Mods — License / EULA</h3>
+      <p>All skin mods on this site are free to download and use in your own BeamNG.drive installation.</p>
+      <h3>Permitted</h3>
+      <ul>
+        <li>Personal use in-game, including in screenshots and videos with credit.</li>
+        <li>Modifying the skin for your own private, non-redistributed use.</li>
+      </ul>
+      <h3>Not permitted</h3>
+      <ul>
+        <li>Re-uploading these skins to other mod repositories or sites without permission.</li>
+        <li>Claiming these skins as your own work.</li>
+        <li>Selling or paywalling these skins in any form.</li>
+      </ul>
+      <p><em>Placeholder text — replace with your actual generalized skin license.</em></p>
+    </div>
+
+    <div class="lic-panel" id="lic-vehicles">
+      <h3>Vehicle Mods — License / EULA</h3>
+      <p>This license applies to full vehicle mods, such as the Gavril Heavystar II.</p>
+      <h3>Permitted</h3>
+      <ul>
+        <li>Personal, non-commercial use in BeamNG.drive.</li>
+        <li>Creating and sharing skins for this vehicle, with credit to the original mod.</li>
+      </ul>
+      <h3>Not permitted</h3>
+      <ul>
+        <li>Redistributing the vehicle files, in original or modified form, without permission.</li>
+        <li>Decompiling, reverse engineering, or extracting assets for use in other mods or games.</li>
+        <li>Commercial use of any kind.</li>
+      </ul>
+      <p><em>Placeholder text — replace with your actual generalized vehicle license.</em></p>
+    </div>
+
+    <div class="lic-panel" id="lic-maps">
+      <h3>Map Mods — License / EULA</h3>
+      <p>This license applies to map/level mods, including work-in-progress releases.</p>
+      <h3>Permitted</h3>
+      <ul>
+        <li>Personal use once the map is publicly released.</li>
+        <li>Screenshots and videos with credit.</li>
+      </ul>
+      <h3>Not permitted</h3>
+      <ul>
+        <li>Redistribution of map files on other sites without permission.</li>
+        <li>Extracting terrain, meshes, or assets for use in other projects.</li>
+        <li>Any commercial use.</li>
+      </ul>
+      <p><em>Placeholder text — replace with your actual generalized map license.</em></p>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close fullscreen"><i class="fas fa-xmark"></i></button>
+  <div class="lightbox-inner" onclick="event.stopPropagation()"><img id="lightboxImg" src="" alt="Screenshot fullscreen"></div>
+</div>
+
+<script>
+/* MOD DATA — edit this array to add/remove/update mods */
+const MODS = [
+  { id:'m1', title:'Example Skin — Highway Patrol', category:'skins', wip:false,
+    desc:'A placeholder skin description. Replace with real details about the livery, the vehicle it fits, and any notable features.',
+    images:['skin1-1.jpg','skin1-2.jpg','skin1-3.jpg'],
+    repo:'hunter6828/example-skin-highway-patrol', tags:['ETK800','Livery'], license:'skins' },
+  { id:'m2', title:'Gavril Heavystar II', category:'vehicles', wip:false,
+    desc:'Placeholder vehicle description. Replace with real details about the Heavystar II build — parts, JBeam work, configs included, etc.',
+    images:['vehicle1-1.jpg','vehicle1-2.jpg'],
+    repo:'hunter6828/gavril-heavystar-ii', tags:['Gavril','Custom Vehicle'], license:'vehicles' },
+  { id:'m3', title:'Untitled Map Project', category:'maps', wip:true,
+    desc:'A work-in-progress map. Not yet available for download — check back or follow the Discord for updates on release.',
+    images:['map1-1.jpg'],
+    repo:null, tags:['WIP','Terrain'], license:'maps' },
+];
+for (let i = 2; i <= 14; i++) {
+  MODS.splice(i-1, 0, {
+    id:'skin'+i, title:'Skin Mod #'+i, category:'skins', wip:false,
+    desc:'Placeholder description for skin mod #'+i+'. Swap in the real title, vehicle, and details.',
+    images:['placeholder.jpg'],
+    repo:'hunter6828/skin-mod-'+i, tags:['Livery'], license:'skins'
+  });
+}
+
+const CAT_LABELS = { skins:'Skins', vehicles:'Vehicle', maps:'Map' };
+let activeCat = 'all';
+const modStats = {}; // id -> { count, url, loaded }
+let currentModalId = null;
+
+async function fetchModStats(m){
+  if (!m.repo) return;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${m.repo}/releases`);
+    if (!res.ok) throw new Error('fetch failed');
+    const releases = await res.json();
+    if (!Array.isArray(releases) || !releases.length) throw new Error('no releases');
+    let total = 0;
+    releases.forEach(r => r.assets.forEach(a => total += a.download_count));
+    const firstAsset = releases[0].assets && releases[0].assets[0];
+    modStats[m.id] = {
+      count: total,
+      url: firstAsset ? firstAsset.browser_download_url : releases[0].html_url,
+      loaded: true
+    };
+  } catch(e){
+    modStats[m.id] = { count:null, url:'#', loaded:true, failed:true };
+  }
+  updateModCardStat(m.id);
+  updateModalStatIfOpen(m.id);
+}
+
+function fmtCount(n){
+  if (n===null || n===undefined) return '—';
+  if (n>=1000) return (n/1000).toFixed(n>=10000?0:1)+'k';
+  return n.toLocaleString();
+}
+
+function updateModCardStat(id){
+  const el = document.querySelector(`.mod-card-dl[data-id="${id}"]`);
+  if (!el) return;
+  const s = modStats[id];
+  if (!s || !s.loaded) { el.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i>`; return; }
+  el.innerHTML = s.failed
+    ? `<i class="fas fa-download"></i> —`
+    : `<i class="fas fa-download"></i> ${fmtCount(s.count)}`;
+}
+
+function updateModalStatIfOpen(id){
+  if (currentModalId !== id) return;
+  renderModalActions(MODS.find(x=>x.id===id));
+}
+
+function updateCounts(){
+  document.getElementById('cnt-all').textContent = MODS.length;
+  document.getElementById('cnt-skins').textContent = MODS.filter(m=>m.category==='skins').length;
+  document.getElementById('cnt-vehicles').textContent = MODS.filter(m=>m.category==='vehicles').length;
+  document.getElementById('cnt-maps').textContent = MODS.filter(m=>m.category==='maps').length;
+}
+
+function renderMods(){
+  const grid = document.getElementById('modGrid');
+  const empty = document.getElementById('emptyState');
+  const q = (document.getElementById('modSearch').value || '').toLowerCase().trim();
+  let list = MODS.filter(m => activeCat==='all' || m.category===activeCat);
+  if (q) list = list.filter(m => m.title.toLowerCase().includes(q) || (m.tags||[]).some(t=>t.toLowerCase().includes(q)));
+
+  grid.innerHTML = '';
+  if (!list.length){ empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  list.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'mod-card';
+    card.onclick = () => openModModal(m.id);
+    card.innerHTML = `
+      <div class="mod-card-img">
+        <img src="${m.images[0]}" alt="${m.title}" onerror="this.style.opacity=0;this.parentElement.style.background='linear-gradient(135deg,var(--bg-2),var(--bg-3))'">
+        <span class="mod-card-cat${m.wip?' wip':''}">${m.wip?'WIP':CAT_LABELS[m.category]}</span>
+      </div>
+      <div class="mod-card-body">
+        <div class="mod-card-title">${m.title}</div>
+        <div class="mod-card-desc">${m.desc}</div>
+        <div class="mod-card-foot">
+          <span class="mod-card-tag">${(m.tags||[]).join(' · ')}</span>
+          ${m.wip ? '' : `<span class="mod-card-dl" data-id="${m.id}"><i class="fas fa-circle-notch fa-spin"></i></span>`}
+          <span class="mod-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+    if (!m.wip && !modStats[m.id]) fetchModStats(m);
+    else if (modStats[m.id]) updateModCardStat(m.id);
+  });
+}
+
+function filterCat(cat, btn){
+  activeCat = cat;
+  document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+  const target = btn || document.querySelector(`.filter-pill[data-cat="${cat}"]`);
+  if (target) target.classList.add('active');
+  renderMods();
+}
+
+/* MOD MODAL */
+let mmCurrentImages = [];
+function openModModal(id){
+  const m = MODS.find(x=>x.id===id);
+  if (!m) return;
+  mmCurrentImages = m.images;
+  document.getElementById('mmMainImg').src = m.images[0];
+  document.getElementById('mmTitle').textContent = m.title;
+  const badge = document.getElementById('mmCatBadge');
+  badge.textContent = m.wip ? 'Work In Progress' : CAT_LABELS[m.category];
+  badge.className = 'mm-cat-badge' + (m.wip ? ' wip' : '');
+  document.getElementById('mmDesc').textContent = m.desc;
+
+  const meta = document.getElementById('mmMetaRow');
+  meta.innerHTML = (m.tags||[]).map(t=>`<span class="mm-meta-pill"><i class="fas fa-tag"></i>${t}</span>`).join('');
+
+  const thumbs = document.getElementById('mmThumbs');
+  thumbs.innerHTML = '';
+  if (m.images.length > 1){
+    m.images.forEach((src,i)=>{
+      const t = document.createElement('div');
+      t.className = 'mm-thumb' + (i===0?' active':'');
+      t.innerHTML = `<img src="${src}" onerror="this.style.opacity=0">`;
+      t.onclick = () => {
+        document.getElementById('mmMainImg').src = src;
+        document.querySelectorAll('.mm-thumb').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+      };
+      thumbs.appendChild(t);
+    });
+  }
+
+  const actions = document.getElementById('mmActions');
+  actions.innerHTML = '';
+  currentModalId = m.id;
+  renderModalActions(m);
+  if (!m.wip && !modStats[m.id]) fetchModStats(m);
+
+  document.getElementById('modModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderModalActions(m){
+  const actions = document.getElementById('mmActions');
+  if (!actions || !m) return;
+  let html = '';
+  if (m.wip){
+    html += `<button class="mm-btn mm-btn-wip" disabled><i class="fas fa-hourglass-half"></i> Not Yet Released</button>`;
+  } else {
+    const s = modStats[m.id];
+    const url = (s && s.url) ? s.url : '#';
+    const countLabel = !s ? `<i class="fas fa-circle-notch fa-spin"></i>` : (s.failed ? '—' : `${fmtCount(s.count)} downloads`);
+    html += `<a href="${url}" target="_blank" class="mm-btn mm-btn-dl"><i class="fas fa-download"></i> Download <span class="mm-btn-count">${countLabel}</span></a>`;
+  }
+  html += `<button class="mm-btn mm-btn-license" onclick="openLicModal('${m.license}')"><i class="fas fa-file-contract"></i> License / EULA</button>`;
+  actions.innerHTML = html;
+}
+function closeModModal(){
+  document.getElementById('modModal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentModalId = null;
+}
+
+/* LICENSE MODAL */
+function openLicModal(cat){
+  document.getElementById('licModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  switchLic(cat || 'skins');
+}
+function closeLicModal(){
+  document.getElementById('licModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function switchLic(cat, btn){
+  document.querySelectorAll('.lic-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.lic-panel').forEach(p=>p.classList.remove('active'));
+  const tabBtn = btn || document.querySelector(`.lic-tab[data-lic="${cat}"]`);
+  if (tabBtn) tabBtn.classList.add('active');
+  document.getElementById('lic-'+cat).classList.add('active');
+}
+
+/* IMAGE LIGHTBOX */
+function openLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = document.getElementById('modModal').classList.contains('open') ? 'hidden' : '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape'){
+    closeLightbox();
+    closeLicModal();
+    closeModModal();
+  }
+});
+
+/* TABS */
+const TABS = ['home','mods','about'];
+function switchTab(name, btn, isMobile){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  const idx = TABS.indexOf(name);
+  if (!isMobile){
+    document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active', i===idx));
+    document.querySelectorAll('.mobile-tab').forEach((t,i)=>t.classList.toggle('active', i===idx));
+  } else {
+    document.querySelectorAll('.mobile-tab').forEach(t=>t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active', i===idx));
+  }
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+updateCounts();
+renderMods();
+</script>
+
+</body>
 </html>
