@@ -1,93 +1,204 @@
-/* Base Layout Setup */
+/* Color & Font Definitions */
+:root {
+    --bg-dark: #0b0d10;       /* Ultra dark background */
+    --card-bg: #14171c;       /* Slightly lighter card background */
+    --accent-orange: #ff6600; /* BeamNG Orange core */
+    --accent-glow: rgba(255, 102, 0, 0.15);
+    --text-main: #f3f4f6;     /* Off-white text */
+    --text-muted: #9ca3af;    /* Muted gray text */
+    --border-color: #22272e;  /* Subtle thin borders */
+    --font-stack: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Base Body Styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-stack);
     margin: 0;
     padding: 0;
-    background-color: #121212; /* Dark theme default */
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Elegant Hero Header */
+.hero-section {
+    text-align: center;
+    padding: 80px 20px 40px 20px;
+    background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 60%);
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 10px 0;
     color: #ffffff;
 }
 
-header {
-    text-align: center;
-    padding: 40px 20px;
-    background: #1e1e1e;
+.hero-content p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    font-size: 1.1rem;
 }
 
-/* Category Menu Bar */
-.category-nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    background: #ff6600; /* BeamNG Orange accent */
-    padding: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.category-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+/* Small Upper Badge */
+.badge {
+    background: rgba(255, 102, 0, 0.1);
+    color: var(--accent-orange);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 102, 0, 0.2);
 }
 
+/* Modern Pill-Shaped Navigation Bar */
+.category-nav {
+    display: inline-flex;
+    background: var(--card-bg);
+    padding: 6px;
+    border-radius: 40px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.nav-item {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+    background: var(--accent-orange);
+    color: #ffffff;
+    box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+/* Page Layout Container */
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: auto;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
+/* Section Title Headers */
 .mod-section {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
-/* Flexbox/Grid for Mod entries */
+.section-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.accent-line {
+    width: 40px;
+    height: 4px;
+    background: var(--accent-orange);
+    border-radius: 2px;
+    margin-bottom: 25px;
+}
+
+/* Grid Layout for Cards */
 .mod-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
 }
 
-/* Individual Mod Layout */
+/* Premium Mod Card Components */
 .mod-card {
-    background: #1e1e1e;
-    border-radius: 8px;
+    background: var(--card-bg);
+    border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #333;
+    border: 1px solid var(--border-color);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mod-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 102, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+}
+
+.image-container {
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    background: #1a1e24;
 }
 
 .mod-image {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.mod-card:hover .mod-image {
+    transform: scale(1.04);
 }
 
 .mod-info {
-    padding: 20px;
+    padding: 24px;
 }
 
-/* Professional Download Action Button */
+.mod-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.mod-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-0: 0 0 20px 0;
+    height: 70px; /* Forces uniform alignment */
+    overflow: hidden;
+}
+
+/* Download Action Items Alignments */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
 .download-btn {
-    display: block;
-    text-align: center;
-    background: #ff6600;
-    color: white;
+    background: #ffffff;
+    color: var(--bg-dark);
     text-decoration: none;
-    padding: 12px;
-    border-radius: 4px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
 }
 
 .download-btn:hover {
-    background: #e05500;
+    background: var(--accent-orange);
+    color: #ffffff;
 }
 
 .download-counter {
-    display: block;
-    font-size: 0.9rem;
-    color: #aaa;
-    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
 }
