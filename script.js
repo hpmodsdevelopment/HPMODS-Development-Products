@@ -3,7 +3,7 @@ const REPO = 'HPMODS-Development-Products';
 
 async function fetchDownloadCounts() {
     try {
-        const response = await fetch(`https://github.com{USERNAME}/${REPO}/releases`);
+        const response = await fetch(`https://github.com{USERNAME}/${REPO}/downloads`);
         const releases = await response.json();
 
         // loop through all elements that need a counter
