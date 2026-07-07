@@ -1,74 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HPMODS Development Official</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <!-- Google Fonts for clean typography -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <!-- Hero / Header Section -->
+    <link rel="preconnect" href="https://googleapis.com" />
+    <link rel="preconnect" href="https://gstatic.com" crossorigin />
+    <link
+      href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- badge, header, sub-header -->
     <header class="hero-section">
-        <div class="hero-content">
-            <span class="badge">BeamNG.drive Repository</span>
-            <h1>OFFICIAL CONTENT</h1>
-            <p>Official HPMODS Development content, soon to include skin, map and vehicle mods... all for FREE!</p>
-            
-            <!-- Pill-Shaped Navigation Bar inside Hero -->
-            <nav class="category-nav">
-                <a href="#vehicles" class="nav-item active">Vehicles</a>
-                <a href="#maps" class="nav-item">Maps</a>
-                <a href="#skins" class="nav-item">Skins</a>
-                <a href="#other" class="nav-item">Other</a>
-            </nav>
-        </div>
+      <div class="hero-content">
+        <span class="badge">HPMODS DEVELOPMENT OFFICIAL WEBSITE</span>
+        <h1>GAME MODS, DEVELOPMENT & MORE</h1>
+        <p>
+          Official HPMODS Development content, soon to include skin, map and
+          vehicle mods... all for FREE!
+        </p>
+
+        <!-- navigation bar -->
+        <nav class="category-nav">
+          <a href="#vehicles" class="nav-item active">Vehicles</a>
+          <a href="#maps" class="nav-item">Maps</a>
+          <a href="#skins" class="nav-item">Skins</a>
+          <a href="#other" class="nav-item">Other</a>
+        </nav>
+      </div>
     </header>
 
     <main class="container">
-        
-        <!-- VEHICLES SECTION -->
-        <section id="vehicles" class="mod-section">
-            <div class="section-header">
-                <h2>BEAMNG VEHICLES</h2>
-                <div class="accent-line"></div>
-            </div>
-            
-            <div class="mod-grid">
-                <!-- Mod Card -->
-                <div class="mod-card">
-                    <div class="image-container">
-                        <img src="assets/vehicles/mod1-thumb.jpg" alt="Mod Preview" class="mod-image">
-                    </div>
-                    <div class="mod-info">
-                        <h3>Supercharged Offroad Truck</h3>
-                        <p>Custom jbeam, fully working gauges, and 4 specialized configurations built from the ground up.</p>
-                        <div class="card-footer">
-                            <a href="https://github.com" class="download-btn">Download .ZIP</a>
-                            <span class="download-counter" data-release-id="truck_mod.zip">📥 Loading...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- skins section -->
+      <section id="skins" class="mod-section">
+        <div class="section-header">
+          <h2>BEAMNG SKINS</h2>
+          <div class="accent-line"></div>
+        </div>
 
-        <!-- MAPS SECTION -->
-        <section id="maps" class="mod-section">
-            <div class="section-header">
-                <h2>BEAMNG MAPS</h2>
-                <div class="accent-line"></div>
+        <div class="mod-grid">
+          <!-- mod card; test skin pack (NY Emergency Pack) -->
+          <div class="mod-card">
+            <div class="image-container">
+              <img
+                src="assets/vehicles/mod1-thumb.jpg"
+                alt="Mod Preview"
+                class="mod-image"
+              />
             </div>
-            <div class="mod-grid">
-                <!-- Map entries follow same layout -->
+            <div class="mod-info">
+              <h3>NY Emergency Skin Pack</h3>
+              <p>
+                Vastly inclusive skin pack of various New York area emergency
+                vehicle agencies. Includes skins, pre-built configurations &
+                license plates
+              </p>
+              <div class="card-footer">
+                <a
+                  href="https://githubusercontent.com"
+                  download
+                  class="download-btn"
+                  >Download .ZIP</a
+                >
+                <span class="download-counter" data-release-id="truck_mod.zip"
+                  >📥 Loading...</span
+                >
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
+      <!-- maps section -->
+      <section id="maps" class="mod-section">
+        <div class="section-header">
+          <h2>BEAMNG MAPS</h2>
+          <div class="accent-line"></div>
+        </div>
+        <div class="mod-grid">
+          <!-- mod card; unused -->
+        </div>
+      </section>
+
+      <!-- vehicles section -->
+      <section id="vehicles" class="mod-section">
+        <div class="section-header">
+          <h2>BEAMNG VEHICLES</h2>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="mod-grid">
+          <!-- mod card; unused -->
+          <div class="mod-card">
+            <div class="image-container">
+              <img
+                src="assets/vehicles/mod1-thumb.jpg"
+                alt="Mod Preview"
+                class="mod-image"
+              />
+            </div>
+            <div class="mod-info">
+              <h3>Supercharged Offroad Truck</h3>
+              <p>
+                Custom jbeam, fully working gauges, and 4 specialized
+                configurations built from the ground up.
+              </p>
+              <div class="card-footer">
+                <a href="https://github.com" class="download-btn"
+                  >Download .ZIP</a
+                >
+                <span class="download-counter" data-release-id="truck_mod.zip"
+                  >📥 Loading...</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
