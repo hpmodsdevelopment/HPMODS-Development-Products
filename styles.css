@@ -1,1 +1,93 @@
+/* Base Layout Setup */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark theme default */
+    color: #ffffff;
+}
 
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: #1e1e1e;
+}
+
+/* Category Menu Bar */
+.category-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: #ff6600; /* BeamNG Orange accent */
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.category-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.mod-section {
+    margin-bottom: 50px;
+}
+
+/* Flexbox/Grid for Mod entries */
+.mod-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Individual Mod Layout */
+.mod-card {
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.mod-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.mod-info {
+    padding: 20px;
+}
+
+/* Professional Download Action Button */
+.download-btn {
+    display: block;
+    text-align: center;
+    background: #ff6600;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.download-btn:hover {
+    background: #e05500;
+}
+
+.download-counter {
+    display: block;
+    font-size: 0.9rem;
+    color: #aaa;
+    text-align: center;
+}
