@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hunter's Garage | BeamNG.drive Mods</title>
+<title>HPMODS Development Official</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -91,7 +91,7 @@ body::after {
 .soc-btn i { font-size:.8rem; }
 .soc-btn:hover { color:var(--text);border-color:var(--border-2);background:var(--bg-3); }
 .soc-btn.discord:hover { color:#7289da;border-color:rgba(114,137,218,.35);box-shadow:0 0 12px rgba(114,137,218,.12); }
-.soc-btn.patreon:hover { color:#f96854;border-color:rgba(249,104,84,.35);box-shadow:0 0 12px rgba(249,104,84,.12); }
+.soc-btn.kofi:hover { color:#f96854;border-color:rgba(249,104,84,.35);box-shadow:0 0 12px rgba(249,104,84,.12); }
 .soc-btn.linktree:hover { color:#39e09b;border-color:rgba(57,224,155,.35);box-shadow:0 0 12px rgba(57,224,155,.12); }
 
 /* LAYOUT */
@@ -153,10 +153,10 @@ body::after {
 .comm-discord:hover { border-color:rgba(114,137,218,.45); }
 .comm-discord .comm-icon { background:rgba(114,137,218,.12);color:#7289da; }
 .comm-discord .comm-title { color:#7289da; }
-.comm-patreon { background:rgba(249,104,84,.05);border-color:rgba(249,104,84,.18); }
-.comm-patreon:hover { border-color:rgba(249,104,84,.42); }
-.comm-patreon .comm-icon { background:rgba(249,104,84,.1);color:#f96854; }
-.comm-patreon .comm-title { color:#f96854; }
+.comm-kofi { background:rgba(249,104,84,.05);border-color:rgba(249,104,84,.18); }
+.comm-kofi:hover { border-color:rgba(249,104,84,.42); }
+.comm-kofi .comm-icon { background:rgba(249,104,84,.1);color:#f96854; }
+.comm-kofi .comm-title { color:#f96854; }
 .comm-linktree { background:rgba(57,224,155,.04);border-color:rgba(57,224,155,.15); }
 .comm-linktree:hover { border-color:rgba(57,224,155,.38); }
 .comm-linktree .comm-icon { background:rgba(57,224,155,.08);color:#39e09b; }
@@ -258,7 +258,7 @@ body::after {
 .footer-soc { display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:7px;border:1px solid var(--border);color:var(--text-3);text-decoration:none;font-size:.7rem;font-weight:700;font-family:var(--font-head);text-transform:uppercase;letter-spacing:.06em;transition:all .2s; }
 .footer-soc:hover { color:var(--text);border-color:var(--border-2); }
 .footer-soc.discord:hover { color:#7289da; }
-.footer-soc.patreon:hover { color:#f96854; }
+.footer-soc.kofi:hover { color:#f96854; }
 .footer-soc.linktree:hover { color:#39e09b; }
 .footer-credit { font-size:.74rem;color:var(--text-3); }
 .footer-credit a { color:var(--accent);text-decoration:none;font-weight:700; }
@@ -289,16 +289,16 @@ body::after {
 <nav class="navbar">
   <a class="nav-brand" href="#" onclick="switchTab('home',null);return false;">
     <img src="logo.png" alt="" class="nav-logo" onerror="this.style.display='none'">
-    <span class="nav-wordmark">Hunter's <span>Garage</span></span>
+    <span class="nav-wordmark">HPMODS <span>Development</span></span>
   </a>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="switchTab('home',this)">Home</button>
-    <button class="nav-tab" onclick="switchTab('mods',this)">BeamNG Mods</button>
+    <button class="nav-tab" onclick="switchTab('mods',this)">BeamNG.drive Mods</button>
     <button class="nav-tab" onclick="switchTab('about',this)">About</button>
   </div>
   <div class="nav-socials">
     <a href="#" target="_blank" class="soc-btn discord"><i class="fab fa-discord"></i><span>Discord</span></a>
-    <a href="#" target="_blank" class="soc-btn patreon"><i class="fab fa-patreon"></i><span>Patreon</span></a>
+    <a href="#" target="_blank" class="soc-btn kofi"><i class="fab fa-kofi"></i><span>Ko-Fi</span></a>
     <a href="#" target="_blank" class="soc-btn linktree"><i class="fas fa-seedling"></i><span>Linktree</span></a>
   </div>
 </nav>
@@ -317,17 +317,17 @@ body::after {
   <div class="tab-panel active" id="panel-home">
     <div class="hero">
       <div>
-        <div class="hero-badge"><span class="dot"></span> BeamNG.drive mod creator</div>
-        <h1 class="hero-title">BUILT FOR<br><span class="ac">THE</span><br><span class="dim">GARAGE</span></h1>
-        <p class="hero-sub">Custom vehicle skins, maps, and vehicle mods for BeamNG.drive — all free, all hosted here so they stay exactly the way I built them.</p>
+        <div class="hero-badge"><span class="dot"></span> Mod Creator for BeamNG.drive</div>
+        <h1 class="hero-title">SUPPORT<br><span class="ac">FREE, HIGH QUALITY</span><br><span class="dim">WORK</span></h1>
+        <p class="hero-sub">Custom built skin, map & vehicle mods, all right here on the new official website. Free, high quality content made by someone who understands client side and creator side desires.</p>
         <div class="hero-actions">
           <button class="hero-btn hero-btn-primary" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1])">
             <span class="btn-label"><i class="fas fa-layer-group"></i> Browse Mods</span>
-            <span class="btn-sub">14 skins · 1 vehicle · 1 map</span>
+            <span class="btn-sub">14 skin mods · 1 vehicle mod · 1 map mod</span>
           </button>
           <button class="hero-btn hero-btn-ghost" onclick="switchTab('about',document.querySelectorAll('.nav-tab')[2])">
             <span class="btn-label"><i class="fas fa-user"></i> About Me</span>
-            <span class="btn-sub">Who's behind this</span>
+            <span class="btn-sub">About the creator & development</span>
           </button>
         </div>
         <div class="stats-row">
@@ -338,7 +338,7 @@ body::after {
       </div>
       <div class="hero-visual">
         <img src="hero-showcase.jpg" alt="Mod showcase" onerror="this.parentElement.style.background='linear-gradient(135deg,var(--bg-2),var(--bg-3))';this.style.display='none'">
-        <div class="hv-tag"><i class="fas fa-image"></i> Featured build</div>
+        <div class="hv-tag"><i class="fas fa-image"></i> Featured Content</div>
       </div>
     </div>
 
@@ -347,32 +347,32 @@ body::after {
       <a href="#" class="cat-tile" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1]);setTimeout(()=>filterCat('skins'),0);return false;">
         <div class="cat-tile-icon"><i class="fas fa-spray-can"></i></div>
         <div class="cat-tile-title">Skins</div>
-        <div class="cat-tile-desc">Custom liveries and paint jobs for a range of BeamNG vehicles.</div>
+        <div class="cat-tile-desc">BeamNG - Custom skin packs including vehicle skins, pre-built configurations and license plates.</div>
         <div class="cat-tile-count">14 mods</div>
       </a>
       <a href="#" class="cat-tile" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1]);setTimeout(()=>filterCat('vehicles'),0);return false;">
         <div class="cat-tile-icon"><i class="fas fa-truck-monster"></i></div>
         <div class="cat-tile-title">Vehicles</div>
-        <div class="cat-tile-desc">Full custom vehicle builds, starting with the Gavril Heavystar II.</div>
+        <div class="cat-tile-desc">BeamNG - Custom vehicles, including the latest Gavril Heavystar II mod.</div>
         <div class="cat-tile-count">1 mod</div>
       </a>
       <a href="#" class="cat-tile" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1]);setTimeout(()=>filterCat('maps'),0);return false;">
         <div class="cat-tile-icon"><i class="fas fa-map"></i></div>
         <div class="cat-tile-title">Maps</div>
         <div class="cat-tile-desc">Original terrain and level design for BeamNG.drive.</div>
-        <div class="cat-tile-count">1 in progress</div>
+        <div class="cat-tile-count">1 (work in progress)</div>
       </a>
     </div>
 
     <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-title"><i class="fas fa-users"></i> Community</div><div class="sec-div-line"></div></div>
     <div class="community-grid">
-      <a href="#" target="_blank" class="comm-card comm-discord">
+      <a href="https://discord.gg/XSTFNk6JsU" target="_blank" class="comm-card comm-discord">
         <div class="comm-icon"><i class="fab fa-discord"></i></div>
-        <div><div class="comm-title">Discord</div><div class="comm-desc">Get support, share screenshots, and hear about new releases first.</div></div>
+        <div><div class="comm-title">Discord</div><div class="comm-desc">Community, support, mod engagement, mod progress & more!</div></div>
       </a>
-      <a href="#" target="_blank" class="comm-card comm-patreon">
-        <div class="comm-icon"><i class="fab fa-patreon"></i></div>
-        <div><div class="comm-title">Patreon</div><div class="comm-desc">Support ongoing mod development directly.</div></div>
+      <a href="https://ko-fi.com/hpmodsdevelopment" target="_blank" class="comm-card comm-kofi">
+        <div class="comm-icon"><i class="fab fa-kofi"></i></div>
+        <div><div class="comm-title">Ko-Fi</div><div class="comm-desc">Support my work here directly! This is the official page for my donations.</div></div>
       </a>
       <a href="#" target="_blank" class="comm-card comm-linktree">
         <div class="comm-icon"><i class="fas fa-seedling"></i></div>
@@ -410,12 +410,12 @@ body::after {
       <div>
         <div class="about-name">HUNTER <span>@hunter6828</span></div>
         <div class="about-role">BeamNG.drive Mod Creator</div>
-        <p class="about-bio">Hey, I'm Hunter — I make skins, vehicles, and maps for <strong>BeamNG.drive</strong>. Everything here started on the official repository, but I'm moving my work to my own site so I have full control over how it's shared and licensed.</p>
-        <p class="about-bio">Right now that's <strong>14 skin mods</strong>, one custom vehicle (the <strong>Gavril Heavystar II</strong>), and a map that's still a work in progress. Everything is free to download.</p>
-        <p class="about-bio">Some of my maps and vehicles carry a license/EULA — check the <strong>License</strong> button on any mod card for the specifics.</p>
+        <p class="about-bio">Hey, I'm Hunter — I make skins, vehicles, and maps for <strong>BeamNG.drive</strong>. Everything here started on the official BeamNG.drive repository, but I'm moving my work to my own site so I have full control over how it's used and protected.</p>
+        <p class="about-bio">Right now that's <strong>14 skin mods</strong>, one custom vehicle (the <strong>Gavril Heavystar II</strong>), and a map that's still a work in progress. Everything is free to download, as always.</p>
+        <p class="about-bio">All of my mods here are protected by a license/End User License Agreement (EULA) — check the <strong>License</strong> button on any mod card for the specifics.</p>
         <div class="hero-actions" style="margin-top:20px;">
-          <a href="#" target="_blank" class="hero-btn hero-btn-ghost"><span class="btn-label"><i class="fab fa-discord"></i> Join Discord</span></a>
-          <a href="#" target="_blank" class="hero-btn hero-btn-ghost"><span class="btn-label"><i class="fab fa-patreon"></i> Support on Patreon</span></a>
+          <a href="#" target="_blank" class="hero-btn hero-btn-ghost"><span class="btn-label"><i class="fab fa-discord"></i> Join my Discord community</span></a>
+          <a href="#" target="_blank" class="hero-btn hero-btn-ghost"><span class="btn-label"><i class="fab fa-kofi"></i> Support me on Ko-Fi</span></a>
         </div>
       </div>
     </div>
@@ -428,10 +428,10 @@ body::after {
   <div class="footer-brand"><img src="logo.png" alt="" class="footer-logo" onerror="this.style.display='none'"><span class="footer-name">Hunter's Garage</span></div>
   <div class="footer-socials">
     <a href="#" target="_blank" class="footer-soc discord"><i class="fab fa-discord"></i> Discord</a>
-    <a href="#" target="_blank" class="footer-soc patreon"><i class="fab fa-patreon"></i> Patreon</a>
+    <a href="#" target="_blank" class="footer-soc kofi"><i class="fab fa-kofi"></i> Ko-Fi</a>
     <a href="#" target="_blank" class="footer-soc linktree"><i class="fas fa-seedling"></i> Linktree</a>
   </div>
-  <div class="footer-credit">Made by <a href="#" target="_blank">@Burzt_YT</a></div>
+  <div class="footer-credit">Initial website layout made by <a href="#" target="_blank">@Burzt_YT</a> for HPMODS Development</div>
 </footer>
 
 <!-- MOD DETAIL MODAL -->
@@ -459,9 +459,9 @@ body::after {
   <div class="modal-box" style="max-width:720px;" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeLicModal()"><i class="fas fa-xmark"></i></button>
     <div class="lic-tabs">
-      <button class="lic-tab" data-lic="skins" onclick="switchLic('skins',this)">Skins License</button>
-      <button class="lic-tab" data-lic="vehicles" onclick="switchLic('vehicles',this)">Vehicle License</button>
-      <button class="lic-tab" data-lic="maps" onclick="switchLic('maps',this)">Map License</button>
+      <button class="lic-tab" data-lic="skins" onclick="switchLic('skins',this)">Skin License/EULA</button>
+      <button class="lic-tab" data-lic="vehicles" onclick="switchLic('vehicles',this)">Vehicle License/EULA</button>
+      <button class="lic-tab" data-lic="maps" onclick="switchLic('maps',this)">Map License/EULA</button>
     </div>
 
     <div class="lic-panel" id="lic-skins">
