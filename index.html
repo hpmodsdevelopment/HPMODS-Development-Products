@@ -91,8 +91,8 @@ body::after {
 .soc-btn i { font-size:.8rem; }
 .soc-btn:hover { color:var(--text);border-color:var(--border-2);background:var(--bg-3); }
 .soc-btn.discord:hover { color:#7289da;border-color:rgba(114,137,218,.35);box-shadow:0 0 12px rgba(114,137,218,.12); }
-.soc-btn.kofi:hover { color:#f96854;border-color:rgba(249,104,84,.35);box-shadow:0 0 12px rgba(249,104,84,.12); }
-.soc-btn.beamng:hover { color:#39e09b;border-color:rgba(57,224,155,.35);box-shadow:0 0 12px rgba(57,224,155,.12); }
+.soc-btn.kofi:hover { color:#a3b3ff;border-color:rgba(249,104,84,.35);box-shadow:0 0 12px rgba(249,104,84,.12); }
+.soc-btn.beamng:hover { color:#e67e00;border-color:rgba(57,224,155,.35);box-shadow:0 0 12px rgba(57,224,155,.12); }
 
 /* LAYOUT */
 .page-wrap { max-width:1380px;margin:0 auto;padding:0 24px;position:relative;z-index:1; }
@@ -155,12 +155,12 @@ body::after {
 .comm-discord .comm-title { color:#7289da; }
 .comm-kofi { background:rgba(249,104,84,.05);border-color:rgba(249,104,84,.18); }
 .comm-kofi:hover { border-color:rgba(249,104,84,.42); }
-.comm-kofi .comm-icon { background:rgba(249,104,84,.1);color:#f96854; }
-.comm-kofi .comm-title { color:#f96854; }
+.comm-kofi .comm-icon { background:rgba(249,104,84,.1);color:#a3b3ff; }
+.comm-kofi .comm-title { color:#a3b3ff; }
 .comm-beamng { background:rgba(57,224,155,.04);border-color:rgba(57,224,155,.15); }
 .comm-beamng:hover { border-color:rgba(57,224,155,.38); }
-.comm-beamng .comm-icon { background:rgba(57,224,155,.08);color:#39e09b; }
-.comm-beamng .comm-title { color:#39e09b; }
+.comm-beamng .comm-icon { background:rgba(57,224,155,.08);color:#e67e00; }
+.comm-beamng .comm-title { color:#e67e00; }
 
 /* MODS TAB */
 .tab-heading { font-family:var(--font-head);font-weight:900;font-size:3.2rem;text-transform:uppercase;color:var(--text);line-height:1;margin-bottom:6px; }
@@ -345,13 +345,13 @@ body::after {
     <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-title"><i class="fas fa-grip"></i> Browse by category</div><div class="sec-div-line"></div></div>
     <div class="cat-grid">
       <a href="#" class="cat-tile" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1]);setTimeout(()=>filterCat('skins'),0);return false;">
-        <div class="cat-tile-icon"><i class="fas fa-spray-can"></i></div>
+        <div class="cat-tile-icon"><i class="fas fa-paint-brush"></i></div>
         <div class="cat-tile-title">Skins</div>
         <div class="cat-tile-desc">HPMODS Development BeamNG skin mods, some including custom plates and more.</div>
         <div class="cat-tile-count">14 mods</div>
       </a>
       <a href="#" class="cat-tile" onclick="switchTab('mods',document.querySelectorAll('.nav-tab')[1]);setTimeout(()=>filterCat('vehicles'),0);return false;">
-        <div class="cat-tile-icon"><i class="fas fa-truck-monster"></i></div>
+        <div class="cat-tile-icon"><i class="fas fa-bus"></i></div>
         <div class="cat-tile-title">Vehicles</div>
         <div class="cat-tile-desc">HPMODS Development BeamNG vehicle mods, the latest and only current one being the Gavril Heavystar II mod.</div>
         <div class="cat-tile-count">1 mod</div>
@@ -388,7 +388,7 @@ body::after {
 
     <div class="filter-row">
       <button class="filter-pill active" data-cat="all" onclick="filterCat('all',this)">All <span class="cnt" id="cnt-all">16</span></button>
-      <button class="filter-pill" data-cat="skins" onclick="filterCat('skins',this)"><i class="fas fa-spray-can"></i> Skins <span class="cnt" id="cnt-skins">14</span></button>
+      <button class="filter-pill" data-cat="skins" onclick="filterCat('skins',this)"><i class="fas fa-paint-brush"></i> Skins <span class="cnt" id="cnt-skins">14</span></button>
       <button class="filter-pill" data-cat="vehicles" onclick="filterCat('vehicles',this)"><i class="fas fa-bus"></i> Vehicles <span class="cnt" id="cnt-vehicles">1</span></button>
       <button class="filter-pill" data-cat="maps" onclick="filterCat('maps',this)"><i class="fas fa-map"></i> Maps <span class="cnt" id="cnt-maps">1</span></button>
       <div class="search-wrap">
