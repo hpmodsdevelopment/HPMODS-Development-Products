@@ -560,7 +560,7 @@ const MODS = [
   { id:'m1', title:'New York Transit Skin Pack', category:'skins', wip:false,
     desc:'A skin pack containing skins for the Wentward DT-40L, Soliad Lansdale, Gavril H-Series and more. Offering skins like CTSB, ATS, CENTRO, MTA and more. Includes configs and some license plates',
     images:['bng-skin-mod-pvw/nyt-1.jpg','bng-skin-mod-pvw/nyt-2.jpg','bng-skin-mod-pvw/nyt-3.jpg'],
-    repo:'hunter6828/example-skin-highway-patrol', tags:['BeamNG'], license:'skins' },
+    repo:null, tags:['BeamNG'], license:'skins' },
 
   { id:'m2', title:'Gavril Heavystar II', category:'vehicles', wip:false,
     desc:'A vehicle pack of real-based truck and bus platforms from 2001 to 2024 under the Gavril name. Separate bus/truck vehicle categories, multiple configs, some license plates & an almost fully-custom asset setup.',
@@ -572,18 +572,16 @@ const MODS = [
     images:['bng-map-mod-pvw/map1-1.jpg'],
     repo:null, tags:['WIP','BeamNG'], license:'maps' },
 ];
-/*
 for (let i = 2; i <= 14; i++) {
   MODS.splice(i-1, 0, {
     id:'skin'+i, title:'Skin Mod #'+i, category:'skins', wip:false,
     desc:'Placeholder description for skin mod #'+i+'. Swap in the real title, vehicle, and details.',
     images:['placeholder.jpg'],
-    repo:'hunter6828/skin-mod-'+i, tags:['Livery'], license:'skins'
+    repo:'bng-map-mod-pvw/ebc-1'+i, tags:['Livery'], license:'skins'
   });
-  */
 }
 
-const CAT_LABELS = { skins:'Skin', vehicles:'Vehicle', maps:'Map' };
+const CAT_LABELS = { skins:'Skins', vehicles:'Vehicle', maps:'Map' };
 let activeCat = 'all';
 const modStats = {}; // id -> { count, url, loaded }
 let currentModalId = null;
